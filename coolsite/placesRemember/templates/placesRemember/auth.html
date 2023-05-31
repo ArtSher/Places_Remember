@@ -1,0 +1,24 @@
+{% extends 'placesRemember/base.html' %}
+{% load account socialaccount %}
+{% block content %}
+
+
+{% get_providers as socialaccount_providers  %}
+<div class="page">
+
+{% if user.is_authenticated %}
+    <h1>Пользователь <br>{{user.first_name }} {{user.last_name }} </h1>
+    <img class="page-photo" src="{{ user.socialaccount_set.all.0.get_avatar_url }}">
+    <a href="logout"> Выход </a> | <a href="/remember"> Воспоминания </a>
+{% else %}
+    <img class="page-photo" src="../static/placesRemember/img/icon.png">
+    <p> Приложение Places Remember позволяет: </p>
+    <ul>
+        <li> Сохранить памятные моменты </li>
+        <li> Поделиться  красивыми местами</li>
+        <li> Передать атмосферу</li>
+    </ul>
+    <a href="{% provider_login_url  'vk' method='oauth2' %}"> Войти через VK </a>
+{% endif %}
+</div>
+{% endblock %}

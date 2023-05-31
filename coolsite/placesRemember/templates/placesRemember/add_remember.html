@@ -1,0 +1,13 @@
+{% extends 'placesRemember/base.html' %}
+
+{% block content %}
+<div class="map-container">
+ <form  method="POST">
+  {% csrf_token %}
+  {{ form }}
+  <input type="submit" value="Сохранить">
+ </form>
+ {{ m|safe }}
+</div>
+
+{% endblock %}

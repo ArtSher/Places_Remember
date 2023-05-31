@@ -1,0 +1,17 @@
+{% extends 'placesRemember/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="page">
+    <p><img class="page-photo" src="{{ user.socialaccount_set.all.0.get_avatar_url }}"></p>
+    <a href="logout"> Выход </a> | <a href="/add_remember"> Добавить воспоминание </a>
+    {% if remembers.cont > 0 %}
+    {% for r in remembers %}
+    {{ remembers.adress}}
+    {% endfor %}
+    {% else %}
+    <p>У вас нет ни одного воспоминания</p>
+    {% endif %}
+</div>
+{% endblock %}
